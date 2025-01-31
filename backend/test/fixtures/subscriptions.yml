@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organization: one
+  plan: one
+  status: MyString
+  start_date: 2024-12-19 19:43:14
+  end_date: 2024-12-19 19:43:14
+
+two:
+  organization: two
+  plan: two
+  status: MyString
+  start_date: 2024-12-19 19:43:14
+  end_date: 2024-12-19 19:43:14

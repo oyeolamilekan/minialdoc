@@ -1,0 +1,1 @@
+export const BASE_URL = `${process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:3001' : 'https://minialdoc-api.withapp.xyz'}/api/v1/`
