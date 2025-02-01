@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Github } from 'lucide-react'
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -19,15 +19,20 @@ export function Navbar() {
               </Link>
             </div>
           </div>
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost" asChild className="text-sm font-medium">
               <Link href="#features">
                 Features
               </Link>
             </Button>
-            <Button variant="ghost" asChild className="text-sm font-medium ml-4">
-              <Link href="/auth/sign-in">
-                Sign in
+            <Button variant="outline" asChild className="text-sm font-medium">
+              <Link 
+                href="https://github.com/oyeolamilekan/minialdoc" 
+                target="_blank"
+                className="flex items-center gap-2"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
               </Link>
             </Button>
           </div>

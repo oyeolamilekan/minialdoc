@@ -53,5 +53,9 @@ Rails.application.routes.draw do
       post "/create_endpoint/:project_slug/:section_slug", to: "api_endpoints#create_endpoint"
       delete "/delete_endpoint/:endpoint_slug", to: "api_endpoints#delete_endpoint"
     end
+
+    scope "/waitlist" do
+      post "/join", to: "waitlists#create"
+    end
   end
 end

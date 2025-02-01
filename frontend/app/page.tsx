@@ -1,13 +1,11 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { FeatureItem } from "@/components/ui/feature-item"
 import { Navbar } from "@/components/ui/navbar"
 import { FaqSection } from "@/components/ui/faq-section"
-import { useRouter } from 'next/navigation'
 import { IntroCard } from "@/components/ui/intro-card"
-import { Stars } from "lucide-react"
+import { WaitlistForm } from "@/components/ui/waitlist-form"
 
 const features = [
   {
@@ -37,12 +35,6 @@ const features = [
 ]
 
 export default function Home() {
-  const router = useRouter()
-
-  const handleJoinWaitlist = () => {
-    router.push('/auth/sign-in')
-  }
-
   return (
     <div className="min-h-screen font-sans">
       <Navbar />
@@ -55,9 +47,7 @@ export default function Home() {
             <p className="text-xl text-muted-foreground">
               Manage API documentation with a minimal and simple tool
             </p>
-            <Button onClick={handleJoinWaitlist} size="lg">
-              <Stars/> Get Started
-            </Button>
+            <WaitlistForm />
           </section>
 
           <Image
@@ -70,7 +60,9 @@ export default function Home() {
 
           <section id="features" className="space-y-8">
             <div className="my-20">
-              <h2 className="text-3xl md:text-5xl font-bold text-center mt-5">An interface crafted for simplicity</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-center mt-5">
+                An interface crafted for simplicity
+              </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-center my-4">
                 Powerful tools and insights to help you build, manage, and optimize your APIs
               </p>
@@ -83,7 +75,7 @@ export default function Home() {
                   imageAlt={feature.imageAlt}
                   title={feature.title}
                   description={feature.description}
-                  onJoinWaitlist={handleJoinWaitlist}
+                  onJoinWaitlist={() => {}}
                 />
               ))}
             </div>
