@@ -1,6 +1,5 @@
 class WaitlistsController < ApplicationController
-  skip_before_action :authorize_request
-
+  
   def create
     # Check if email is disposable
     is_email_disposable = Utils::EmailCheckerService.call(waitlist_params[:email])
