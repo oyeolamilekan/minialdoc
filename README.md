@@ -1,3 +1,5 @@
+# 🌟 A star would be much appreciated! 🌟
+
 # Minialdoc
 An open-source alternative to readme.com for creating beautiful API documentation. Built for developers who want a simple, free way to document their APIs with features like interactive API testing, markdown support, and team collaboration.
 
