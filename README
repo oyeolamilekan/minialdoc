@@ -1,4 +1,4 @@
-# Project Name
+# Minialdoc
 An open-source alternative to readme.com for creating beautiful API documentation. Built for developers who want a simple, free way to document their APIs with features like interactive API testing, markdown support, and team collaboration.
 
 ## 🚀 Tech Stack
@@ -28,10 +28,10 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 # Clone the repository
-git clone [repository-url]
+git clone https://github.com/oyeolamilekan/minialdoc.git
 
 # Navigate to the Rails backend directory
-cd [project-name]/backend
+cd [minialdoc]/backend
 
 # Install Ruby dependencies
 bundle install
@@ -47,7 +47,7 @@ rails s
 
 ```bash
 # Navigate to the Next.js frontend directory
-cd [project-name]/frontend
+cd [minialdoc]/frontend
 
 # Install dependencies
 yarn install # or npm install
