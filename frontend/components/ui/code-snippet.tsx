@@ -169,7 +169,7 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({ code = '', language })
   const languageColor = languageConfigs[language]?.color || 'text-gray-500';
 
   return (
-    <div className="w-full max-w-full overflow-y-auto rounded-lg bg-gray-900 max-h-56">
+    <div className="w-full max-w-full overflow-y-auto rounded-lg bg-gray-900 max-h-64">
       {/* Header */}
       <div className="flex items-center justify-between px-2 sm:px-4 py-1 sm:py-2 bg-gray-800">
         <div className="flex items-center space-x-1 sm:space-x-2">
