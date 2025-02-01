@@ -33,7 +33,7 @@ Before you begin, ensure you have the following installed:
 git clone https://github.com/oyeolamilekan/minialdoc.git
 
 # Navigate to the Rails backend directory
-cd [minialdoc]/backend
+cd minialdoc/backend
 
 # Install Ruby dependencies
 bundle install
@@ -49,7 +49,7 @@ rails s
 
 ```bash
 # Navigate to the Next.js frontend directory
-cd [minialdoc]/frontend
+cd minialdoc/frontend
 
 # Install dependencies
 yarn install # or npm install
