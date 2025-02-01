@@ -18,10 +18,10 @@ An open-source alternative to readme.com for creating beautiful API documentatio
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
-- Node.js (version X.X.X)
-- Ruby (version X.X.X)
-- Rails (version X.X.X)
-- PostgreSQL (version X.X.X)
+- Node.js
+- Ruby
+- Rails
+- PostgreSQL
 - Yarn/npm
 
 ## 🛠 Installation
