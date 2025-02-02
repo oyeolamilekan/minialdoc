@@ -23,11 +23,19 @@ export const metadata: Metadata = {
     description: "Create clean, easy-to-read documentation for your projects. Open source and community-driven.",
     type: "website",
     locale: "en_US",
+    images: [{
+      url: '/images/seo-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'MinialDoc - Open Source Documentation Platform'
+    }],
+    siteName: 'MinialDoc'
   },
   twitter: {
     card: "summary_large_image",
     title: "MinialDoc - Open Source Documentation Platform",
     description: "Create clean, easy-to-read documentation for your projects. Open source and community-driven.",
+    images: ['/images/seo-image.png']
   },
   authors: [{ name: "Oye Olalekan" }],
   creator: "Oye Olalekan",
