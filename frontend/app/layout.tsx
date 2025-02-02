@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     images: [{
-      url: '/images/seo-image.png',
+      url: 'https://res.cloudinary.com/dbwm0ksoi/image/upload/v1738529645/seo-image_twgcd6.png',
       width: 1200,
       height: 630,
       alt: 'MinialDoc - Open Source Documentation Platform'
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MinialDoc - Open Source Documentation Platform",
     description: "Create clean, easy-to-read documentation for your projects. Open source and community-driven.",
-    images: ['/images/seo-image.png']
+    images: ['https://res.cloudinary.com/dbwm0ksoi/image/upload/v1738529645/seo-image_twgcd6.png']
   },
   authors: [{ name: "Oye Olalekan" }],
   creator: "Oye Olalekan",
