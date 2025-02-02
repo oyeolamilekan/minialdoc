@@ -72,6 +72,10 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 DATABASE_URL=postgresql://[your-database-url]
 [other backend env variables]
+SECRET_KEY_BASE=
+STRIPE_API_KEY=
+STRIPE_WEBHOOK_SECRET=
+CORS_ALLOWED_ORIGINS="localhost:5100,*.localhost:5100"
 ```
 
 ## Database Schema
