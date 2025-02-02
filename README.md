@@ -319,7 +319,7 @@ This project is licensed under the [LICENSE NAME] - see the [LICENSE.md](LICENSE
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [Oye Olalekan Johnson](https://github.com/oyeolamilekan)
+- [Oye Olalekan Johnson](https://github.com/oyeolamilekan)
 
 ## 🙏 Acknowledgments
 

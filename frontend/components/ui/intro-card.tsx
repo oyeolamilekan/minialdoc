@@ -7,7 +7,7 @@ export function IntroCard() {
       <CardContent className="p-8 flex gap-8 items-start">
         <div className="flex-1 space-y-6">
           <h2 className="text-2xl font-semibold">
-            👋 I&apos;m Oye and I built ApiCraft because I needed a simple system to document APIs.
+            👋 I&apos;m Oye and I built Minialdoc because I needed a simple system to document APIs.
           </h2>
           
           <p className="text-lg leading-relaxed">
@@ -24,7 +24,7 @@ export function IntroCard() {
         <div className="hidden md:block">
           <Image
             src="/images/oye.jpeg"
-            alt="Chris Raroque"
+            alt="Oye Olalekan Johnson"
             width={160}
             height={160}
             className="rounded-full"
