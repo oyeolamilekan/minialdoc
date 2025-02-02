@@ -11,8 +11,8 @@ const faqs = [
     answer: "Unlike general-purpose tools, our platform is specifically designed for API documentation. We focus on providing specialized features like endpoint testing, request/response examples, and API-specific workflows that make documenting and testing APIs more efficient."
   },
   {
-    question: "Who would be a good fit for ApiCraft?",
-    answer: "ApiCraft is perfect for developers, API designers, and teams who want a streamlined way to document and test their APIs. Whether you're building a public API, managing internal services, or need to document APIs for client projects, our tool provides the specific features you need without the complexity of general-purpose tools."
+    question: "Who would be a good fit for Minialdoc?",
+    answer: "Minialdoc is perfect for developers, API designers, and teams who want a streamlined way to document and test their APIs. Whether you're building a public API, managing internal services, or need to document APIs for client projects, our tool provides the specific features you need without the complexity of general-purpose tools."
   },
   {
     question: "As a one person operation, how can I trust that you will be around in a year or two?",

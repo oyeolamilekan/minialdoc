@@ -12,7 +12,7 @@ export function IntroCard() {
           
           <p className="text-lg leading-relaxed">
             I multi-task a lot and there would always be things that slip my mind or I would forget to take care of. 
-            ApiCraft solved this for me by giving me a space to offload and organize API documentation.
+            Minialdoc solved this for me by giving me a space to offload and organize API documentation.
           </p>
 
           <p className="text-lg">
