@@ -15,8 +15,23 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "MinialDoc",
-  description: "A documentation app for minimalist",
+  title: "MinialDoc - Open Source Documentation Platform",
+  description: "Create clean, easy-to-read documentation for your projects. MinialDoc is an open source, simple documentation tool built for developers and teams.",
+  keywords: "open source docs, documentation tool, docs platform, technical writing, developer docs, simple documentation, markdown docs, team documentation, project docs",
+  openGraph: {
+    title: "MinialDoc - Open Source Documentation Platform",
+    description: "Create clean, easy-to-read documentation for your projects. Open source and community-driven.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MinialDoc - Open Source Documentation Platform",
+    description: "Create clean, easy-to-read documentation for your projects. Open source and community-driven.",
+  },
+  authors: [{ name: "Oye Olalekan" }],
+  creator: "Oye Olalekan",
+  publisher: "Oye Olalekan",
 };
 
 export default function RootLayout({
