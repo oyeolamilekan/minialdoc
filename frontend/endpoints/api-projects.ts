@@ -65,3 +65,7 @@ export const updateAPIEndpoint = async (body: { endpointId: string, body?: unkno
   return data;
 }
 
+export const fetchProjectWithEndpoint = async (id: string) => {
+  const { data } = await axiosInstance.get(`projects/fetch_project_with_endpoint/${id}`);
+  return data;
+}

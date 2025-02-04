@@ -1,18 +1,17 @@
 "use client"
 
+import { redirectToReference } from '@/lib/redirectToReference'
+import { useParams } from 'next/navigation'
 import React, { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 
 export default function Page() {
-  const completeRoute = `https://${window.location.hostname}/reference`
-  const router = useRouter()
+  const { domain } = useParams()
 
   useEffect(() => {
-    // Redirect to the reference page when the component mounts
-    router.push('/reference')
-  }, [])
+    redirectToReference(domain as string)
+  }, [domain])
 
   return (
-    <div>Redirecting you to {completeRoute}</div>
+    <div>Redirecting to..</div>
   )
 }

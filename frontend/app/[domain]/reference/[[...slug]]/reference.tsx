@@ -10,13 +10,13 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useMemo, useState } from 'react'
 import "@blocknote/mantine/style.css";
 import "@blocknote/core/fonts/inter.css";
+import { redirectToReference } from '@/lib/redirectToReference';
 
 export default function Reference({ slug, domain }: { slug: string, domain: string }) {
   const [endpointState, setEndpoint] = useState<APIEndpoint | null>(null)
   const [initialContent, setInitialContent] = useState<string | null>(null)
 
   const editor = useMemo(() => {
-    
     return BlockNoteEditor.create({
       initialContent: initialContent ? JSON.parse(initialContent) : null,
     });
@@ -59,6 +59,12 @@ export default function Reference({ slug, domain }: { slug: string, domain: stri
       }
     })
   }
+
+  useEffect(() => {
+    if (!slug) {
+      redirectToReference(domain)
+    }
+  }, [slug, domain])
 
   return (
     <ApiReferenceSidebar

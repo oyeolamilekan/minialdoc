@@ -68,7 +68,6 @@ function parseHostname(hostname: string, baseDomain: string): { subdomain: strin
         return { subdomain, isBaseDomain: false };
     }
 
-    // Handle other cases (e.g., example.com without subdomain)
     return { subdomain: null, isBaseDomain: true };
 }
 
