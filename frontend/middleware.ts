@@ -75,13 +75,13 @@ function handleAuthAndDashboard(req: NextRequest, response?: NextResponse) {
     const token = req.cookies.get("token")?.value;
     const pathname = req.nextUrl.pathname;
 
-    // if (!token && pathname.includes("/dashboard")) {
-    //     return NextResponse.redirect(new URL("/auth/sign-in", req.url));
-    // }
+    if (!token && pathname.includes("/dashboard")) {
+        return NextResponse.redirect(new URL("/auth/sign-in", req.url));
+    }
 
-    // if (token && pathname.includes("/auth")) {
-    //     return NextResponse.redirect(new URL("/dashboard/projects", req.url));
-    // }
+    if (token && pathname.includes("/auth")) {
+        return NextResponse.redirect(new URL("/dashboard/projects", req.url));
+    }
 
     return response || NextResponse.next();
 }
