@@ -1,6 +1,6 @@
 class ApiProjectsController < ApplicationController
-  before_action :authorize_request, except: [ :fetch_project ]
-  before_action :check_active_subcription, except: [ :fetch_project ]
+  before_action :authorize_request, except: [ :fetch_project, :fetch_project_with_endpoint ]
+  before_action :check_active_subcription, except: [ :fetch_project, :fetch_project_with_endpoint ]
 
   def projects
     result = current_organization.api_project
@@ -33,6 +33,13 @@ class ApiProjectsController < ApplicationController
   def fetch_project
     project = ApiProject.find_by(slug: params[:slug])
     api_response(message: "Api project fetched", data: project)
+  end
+
+  def fetch_project_with_endpoint
+    project = ApiProject.find_by(slug: params[:slug])
+    return api_error(status_code: :not_found, message: "No project found") unless project.present?
+    project_with_endpoint = { slug: project.section.first.endpoint.first.slug }
+    api_response(message: "Api project with endpoints fetched", data: project_with_endpoint)
   end
 
   private

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
     scope "/projects" do
       get "/", to: "api_projects#projects"
+      get "/fetch_project_with_endpoint/:slug", to: "api_projects#fetch_project_with_endpoint"
       post "/create_project", to: "api_projects#create_project"
       get "/fetch_project/:slug", to: "api_projects#fetch_project"
       put "/update_project/:slug", to: "api_projects#update_project"
