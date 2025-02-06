@@ -11,10 +11,12 @@ import React, { useEffect, useMemo, useState } from 'react'
 import "@blocknote/mantine/style.css";
 import "@blocknote/core/fonts/inter.css";
 import { redirectToReference } from '@/lib/redirectToReference';
+import { useRouter } from 'next/navigation';
 
 export default function Reference({ slug, domain }: { slug: string, domain: string }) {
   const [endpointState, setEndpoint] = useState<APIEndpoint | null>(null)
   const [initialContent, setInitialContent] = useState<string | null>(null)
+  const router = useRouter()
 
   const editor = useMemo(() => {
     return BlockNoteEditor.create({
@@ -62,9 +64,11 @@ export default function Reference({ slug, domain }: { slug: string, domain: stri
 
   useEffect(() => {
     if (!slug) {
-      redirectToReference(domain)
+      redirectToReference(domain).then((slug) => {
+        router.push(`/reference/${slug}`)
+      })
     }
-  }, [slug, domain])
+  }, [slug, domain, router])
 
   return (
     <ApiReferenceSidebar
