@@ -60,7 +60,7 @@ export const deleteAPIEndpoint = async (endpointId: string) => {
   return data;
 }
 
-export const updateAPIEndpoint = async (body: { endpointId: string, body?: unknown, content?: unknown, markdown_content?: unknown, title?: string }) => { 
+export const updateAPIEndpoint = async (body: { endpointId: string, body?: unknown, content?: unknown, markdown?: unknown, title?: string }) => { 
   const { data } = await axiosInstance.put(`endpoints/update_endpoint/${body.endpointId}`, body);
   return data;
 }
