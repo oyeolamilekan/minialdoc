@@ -4,10 +4,8 @@ import { EndpointTester } from '@/components/endpoint-req/endpoint-tester';
 import { ApiReferenceSidebar } from '@/components/ui/api-reference-sidebar';
 import { fetchAPIEndpoint, fetchAPISectionAndEndpoints, fetchProject } from '@/endpoints/api-projects';
 import { APIEndpoint, Endpoint } from '@/interfaces';
-import { BlockNoteEditor } from '@blocknote/core';
-import { BlockNoteView, lightDefaultTheme } from '@blocknote/mantine';
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "@blocknote/mantine/style.css";
 import "@blocknote/core/fonts/inter.css";
 import { redirectToReference } from '@/lib/redirectToReference';
@@ -15,14 +13,8 @@ import { useRouter } from 'next/navigation';
 
 export default function Reference({ slug, domain }: { slug: string, domain: string }) {
   const [endpointState, setEndpoint] = useState<APIEndpoint | null>(null)
-  const [initialContent, setInitialContent] = useState<string | null>(null)
   const router = useRouter()
 
-  const editor = useMemo(() => {
-    return BlockNoteEditor.create({
-      initialContent: initialContent ? JSON.parse(initialContent) : null,
-    });
-  }, [initialContent]);
 
   const { data: projectData } = useQuery({
     queryKey: ["api_project", domain],
@@ -45,7 +37,6 @@ export default function Reference({ slug, domain }: { slug: string, domain: stri
 
   useEffect(() => {
     setEndpoint(endpoint?.data)
-    setInitialContent(endpoint?.data?.content)
     if (Boolean(slug)) refetch()
   }, [slug, endpoint?.data, refetch])
 
@@ -77,21 +68,6 @@ export default function Reference({ slug, domain }: { slug: string, domain: stri
       endpointSlug={slug}
     >
       <>
-        {endpointState?.endpoint_type == "doc" && (
-          <>
-            <div className='flex justify-between mr-4'>
-              <h2 className='mx-6 text-3xl font-bold flex align-middle'>
-                {endpointState.title}
-              </h2>
-            </div>
-            <BlockNoteView
-              editor={editor}
-              className="mt-6"
-              theme={lightDefaultTheme}
-              editable={false}
-            />
-          </>
-        )}
         {endpointState?.endpoint_type == "endpoint" && (
           <>
             <h2 className='mx-6 text-xl md:text-2xl font-bold'>{endpointState.title}</h2>

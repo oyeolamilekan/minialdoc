@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       put "/update_endpoint/:endpoint_slug", to: "api_endpoints#update_endpoint"
       post "/create_endpoint/:project_slug/:section_slug", to: "api_endpoints#create_endpoint"
       delete "/delete_endpoint/:endpoint_slug", to: "api_endpoints#delete_endpoint"
+      post "/import_endpoint/:project_slug", to: "api_endpoints#import_openapi"
     end
 
     scope "/waitlist" do

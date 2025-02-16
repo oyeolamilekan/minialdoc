@@ -1,5 +1,5 @@
 class ApiEndpointsController < ApplicationController
-  before_action :authorize_request, except: [ :fetch_endpoint ]
+  before_action :authorize_request, except: [ :fetch_endpoint, :import_openapi]
   before_action :check_active_subcription, except: [ :fetch_endpoint ]
 
   def fetch_endpoint
@@ -31,7 +31,56 @@ class ApiEndpointsController < ApplicationController
     api_response(status: true, message: "Successfully update project", data: endpoint_result, status_code: :ok)
   end
 
+  def import_openapi
+    project = ApiProject.find_by(slug: project_slug)
+    return api_error(status_code: :not_found, message: "Project does not exist") unless project.present?
+    
+    section_status, section_result = ApiSections::FetchApiSection.call(slug: section_slug)
+    return api_error(status_code: :not_found, message: section_result) if section_status != :success
+
+    unless params[:file]
+      return api_error(status_code: :bad_request, message: "File is required")
+    end
+
+    file = params[:file]
+    puts file
+    content = extract_file_content(file)
+
+    importer = ApiEndpoints::OpenApiImporter.new(
+      project,
+      section_result,
+      content
+    )
+    
+    importer.import
+    
+    api_response(status: true, message: "API endpoints imported successfully", status_code: :ok)
+  rescue ApiEndpoints::InvalidSpecError => e
+    api_error(status_code: :unprocessable_entity, message: e.message)
+  rescue StandardError => e
+    api_error(status_code: :internal_server_error, message: "Import failed: #{e.message}")
+  end
+
   private
+
+  def extract_file_content(file)
+    extension = File.extname(file.original_filename).downcase
+    content = file.read
+
+    case extension
+    when '.json'
+      # Verify it's valid JSON before returning
+      JSON.parse(content)
+      content
+    when '.yaml', '.yml'
+      # Verify it's valid YAML before returning
+      YAML.safe_load(content, permitted_classes: [Date, Time])
+      content
+    else
+      raise ApiEndpoints::InvalidSpecError, 'Unsupported file format. Please upload a JSON or YAML file'
+    end
+  end
+
   def endpoint_params
     params.permit(:title, :content, :markdown_content, :endpoint_type, body: {})
   end
