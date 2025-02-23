@@ -69,3 +69,12 @@ export const fetchProjectWithEndpoint = async (id: string) => {
   const { data } = await axiosInstance.get(`projects/fetch_project_with_endpoint/${id}`);
   return data;
 }
+
+export const importOpenApiSpec = async (projectSlug: string, file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('project_slug', projectSlug);
+  
+  const { data } = await axiosInstance.post(`endpoints/import_endpoint/${projectSlug}`, formData);
+  return data;
+}

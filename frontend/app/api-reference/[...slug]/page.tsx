@@ -26,12 +26,6 @@ type Props = {
 }
 
 export default function Page({ params: { slug } }: Props) {
-  const [content, setContent] = useState<string | null>(null)
-
-  const [markdown, setMarkdown] = useState<string | null>(null)
-
-  const [initialContent, setInitialContent] = useState<string | null>(null)
-
   const router = useRouter()
 
   const sectionRef = useRef<string>()
@@ -171,7 +165,6 @@ export default function Page({ params: { slug } }: Props) {
   }
 
   useEffect(() => {
-    setInitialContent(endpoint?.data?.content)
     setEndpoint(endpoint?.data)
     if (Boolean(endpointSlug)) refetch()
   }, [endpointSlug, endpoint?.data, refetch])
