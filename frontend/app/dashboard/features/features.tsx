@@ -5,6 +5,7 @@ import { ArrowRight, BookOpen, BarChart2, Zap } from 'lucide-react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation'
+import Link from 'next/link';
 
 interface AppsProps {
   slug: string;
@@ -61,13 +62,15 @@ export default function Features({ slug }: AppsProps) {
             <p className="text-gray-600">{feature.description}</p>
           </CardContent>
           <CardFooter className="px-6 pb-6 pt-0">
-            <Button
-              variant="ghost"
-              className="text-gray-600 hover:text-gray-800 hover:bg-gray-50 px-4 py-2 -ml-4 rounded-md transition-colors duration-300"
-              onClick={() => feature.isLive && router.push(`${feature.path}/${slug}`)}
-            >
-              View <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+            <Link href={`${feature.path}/${slug}`} prefetch={true}>
+              <Button
+                variant="ghost"
+                className="text-gray-600 hover:text-gray-800 hover:bg-gray-50 px-4 py-2 -ml-4 rounded-md transition-colors duration-300"
+                onClick={() => feature.isLive && router.push(`${feature.path}/${slug}`)}
+              >
+                View <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}
