@@ -35,24 +35,19 @@ class ApiEndpointsController < ApplicationController
     project = ApiProject.find_by(slug: project_slug)
     return api_error(status_code: :not_found, message: "Project does not exist") unless project.present?
     
-    section_status, section_result = ApiSections::FetchApiSection.call(slug: section_slug)
-    return api_error(status_code: :not_found, message: section_result) if section_status != :success
-
     unless params[:file]
       return api_error(status_code: :bad_request, message: "File is required")
     end
 
     file = params[:file]
-    puts file
     content = extract_file_content(file)
 
     importer = ApiEndpoints::OpenApiImporter.new(
       project,
-      section_result,
       content
     )
     
-    importer.import
+    importer.call
     
     api_response(status: true, message: "API endpoints imported successfully", status_code: :ok)
   rescue ApiEndpoints::InvalidSpecError => e

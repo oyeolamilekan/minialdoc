@@ -1,17 +1,19 @@
 module ApiEndpoints
   class OpenApiImporter
-    def initialize(project, default_section, open_api_spec)
+    def initialize(project, open_api_spec)
       @project = project
-      @default_section = default_section
       @spec = parse_spec(open_api_spec)
       @sections_cache = {}
     end
 
-    def import
+    def call
+      validate_spec_structure!
+      
       paths = @spec['paths'] || {}
       
       paths.each do |path, methods|
         methods.each do |http_method, endpoint_data|
+          validate_endpoint_tags!(path, endpoint_data)
           section = find_or_create_section(endpoint_data['tags'])
           create_endpoint(path, http_method.upcase, endpoint_data, section)
         end
@@ -19,6 +21,18 @@ module ApiEndpoints
     end
 
     private
+
+    def validate_spec_structure!
+      unless @spec['paths'].present?
+        raise InvalidSpecError, 'OpenAPI specification must contain paths'
+      end
+    end
+
+    def validate_endpoint_tags!(path, endpoint_data)
+      unless endpoint_data['tags']&.any?
+        raise InvalidSpecError, "Endpoint #{path} must have at least one tag to determine its section"
+      end
+    end
 
     def parse_spec(spec)
       return spec if spec.is_a?(Hash)
@@ -35,8 +49,6 @@ module ApiEndpoints
     end
 
     def find_or_create_section(tags)
-      return @default_section if tags.nil? || tags.empty?
-
       # Use the first tag as the section name
       tag_name = tags.first
       
@@ -47,10 +59,8 @@ module ApiEndpoints
       section = @project.sections.find_by(title: tag_name)
 
       unless section
-        # Create new section
         section = @project.sections.create!(
           title: tag_name,
-          slug: generate_slug(tag_name)
         )
       end
 
@@ -63,12 +73,12 @@ module ApiEndpoints
       parameters = extract_parameters(data)
       request_body = extract_request_body(data)
       responses = extract_responses(data)
-
+      endpoint_title = data['summary'] || data['operationId'] || "#{method} #{path}"
       ApiEndpoint.create!(
         project: @project,
         section: section,
-        title: data['summary'] || data['operationId'] || "#{method} #{path}",
-        slug: generate_slug(data['summary'] || data['operationId'] || "#{method} #{path}"),
+        title: endpoint_title,
+        slug: endpoint_title,
         endpoint_type: 'endpoint',
         content: data['description'],
         markdown: data['description'],
@@ -157,10 +167,6 @@ module ApiEndpoints
       else
         'None'
       end
-    end
-
-    def generate_slug(title)
-      title.parameterize
     end
   end
 

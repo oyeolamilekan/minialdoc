@@ -2,8 +2,8 @@ class ApiEndpoint < ApplicationRecord
   include HasPublicId
   include Slugify
 
-  belongs_to :section, class_name: "ApiSection"
-  belongs_to :project, class_name: "ApiProject"
+  belongs_to :section, class_name: "ApiSection", dependent: :destroy
+  belongs_to :project, class_name: "ApiProject", dependent: :destroy
 
   scope :with_method, -> {
     select("api_endpoints.*, body->>'method' as method")
