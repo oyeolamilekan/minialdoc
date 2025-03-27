@@ -77,7 +77,7 @@ class ApiEndpointsController < ApplicationController
   end
 
   def endpoint_params
-    params.permit(:title, :content, :markdown_content, :endpoint_type, body: {})
+    params.permit(:title, :content, :markdown, :endpoint_type, body: {})
   end
 
   def endpoint_slug

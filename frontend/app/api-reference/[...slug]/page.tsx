@@ -177,6 +177,10 @@ export default function Page({ params: { slug } }: Props) {
     updateAPIEndpointMutation({ body: endpointState?.body, endpointId: endpointSlug as string })
   }
 
+  const saveDoc = () => {
+    updateAPIEndpointMutation({ content: content, markdown: markdown, endpointId: endpointSlug as string })
+  }
+
   const handleAddSection = () => {
     toggleAddSectionModal()
     reset({ title: '' })
