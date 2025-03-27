@@ -189,12 +189,12 @@ export default function Page({ params: { slug } }: Props) {
     reset({ title: '' })
   }
 
-  const handleAddDoc = (sectionSlug?: string) => {
-    toggleAddAPIDocModal()
-    apiEndpointTypeRef.current = 'doc'
-    sectionRef.current = sectionSlug;
-    reset({ title: '' })
-  }
+  // const handleAddDoc = (sectionSlug?: string) => {
+  //   toggleAddAPIDocModal()
+  //   apiEndpointTypeRef.current = 'doc'
+  //   sectionRef.current = sectionSlug;
+  //   reset({ title: '' })
+  // }
 
   const handleEditSection = (sectionSlug: string, sectionText: string) => {
     apiSectionRef.current = sectionSlug
@@ -261,7 +261,6 @@ export default function Page({ params: { slug } }: Props) {
       handleEditSection={handleEditSection}
       handleAddEndpoint={handleAddEndpoint}
       handleAddSection={handleAddSection}
-      handleAddDoc={handleAddDoc}
     >
       <div className="">
         {endpointState?.endpoint_type == "endpoint" && (

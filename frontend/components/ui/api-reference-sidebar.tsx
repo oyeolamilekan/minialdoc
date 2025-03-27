@@ -63,7 +63,7 @@ export function ApiReferenceSidebar({ title, endpointSlug, items, children }: { 
                 >
                   <div className="relative flex items-center justify-between">
                     <SidebarMenuButton asChild>
-                      <Link href={`#${section.slug}`} className="font-semibold text-2xl uppercase truncate block whitespace-nowrap overflow-hidden">
+                      <Link href={`#${section.slug}`} className="font-semibold text-2xl uppercase truncate block whitespace-nowrap overflow-hidden" prefetch={true}>
                         {truncateWithDots(section.title, 25)}
                       </Link>
                     </SidebarMenuButton>
