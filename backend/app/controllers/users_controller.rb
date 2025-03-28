@@ -8,9 +8,10 @@ class UsersController < ApplicationController
     is_email_disposable = Utils::EmailCheckerService.call(params[:email])
     return api_error(message: "Invalid email, try using a valid email.", status_code: :unprocessable_entity) if is_email_disposable
     ActiveRecord::Base.transaction do
-      status, user = Users::CreateUser.call(user_params: create_user_params)
+      status, result = Users::CreateUser.call(user_params: create_user_params)
+      return api_error(message: result, status_code: :bad_request) if status == :error
       organization = Organization.create(title: params[:buisness_name])
-      user.update!(organization: organization)
+      result.update!(organization: organization)
       return api_response(status: true, message: "Successfully created user", data: nil, status_code: :created) if status == :success
     end
     api_error(message: user, status_code: :unprocessable_entity)
