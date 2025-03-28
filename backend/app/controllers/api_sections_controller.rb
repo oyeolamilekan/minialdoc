@@ -5,7 +5,7 @@ class ApiSectionsController < ApplicationController
   def fetch_section_endpoints
     project = ApiProject.find_by(slug: params[:project_slug])
     return api_error(status_code: :not_found, message: "No section found") unless project.present?
-    sections_with_endpoints = project.section.includes(:endpoint).map do |section|
+    sections_with_endpoints = project.sections.includes(:endpoint).map do |section|
       {
         id: section.id,
         title: section.title,

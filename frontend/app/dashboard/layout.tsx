@@ -28,13 +28,13 @@ export default function DefaultLayout({
                 </Link>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <Link href="/dashboard/projects" className={`border-black inline-flex items-center px-1 pt-1 gap-2 ${checkIfActive("/dashboard/projects") || checkIfActive("/dashboard/features") ? "border-b-2 text-gray-900" : "text-gray-500"} text-sm font-medium`}>
+                <Link href="/dashboard/projects" className={`border-black inline-flex items-center px-1 pt-1 gap-2 ${checkIfActive("/dashboard/projects") || checkIfActive("/dashboard/features") ? "border-b-2 text-gray-900" : "text-gray-500"} text-sm font-medium`} prefetch={true}>
                   <FolderKanban /> Projects
                 </Link>
-                <Link href="/dashboard/payment" className={`border-black inline-flex items-center px-1 pt-1 gap-2 ${checkIfActive("/dashboard/payment") ? "border-b-2 text-gray-900" : "text-gray-500"} text-sm font-medium`}>
+                <Link href="/dashboard/payment" className={`border-black inline-flex items-center px-1 pt-1 gap-2 ${checkIfActive("/dashboard/payment") ? "border-b-2 text-gray-900" : "text-gray-500"} text-sm font-medium`} prefetch={true}>
                   <CreditCard /> Payment
                 </Link>
-                <Link href="#" className={`border-black inline-flex items-center px-1 pt-1 gap-2 ${checkIfActive("/dashboard/team") ? "border-b-2 text-gray-900" : "text-gray-500"} text-sm font-medium`}>
+                <Link href="#" className={`border-black inline-flex items-center px-1 pt-1 gap-2 ${checkIfActive("/dashboard/team") ? "border-b-2 text-gray-900" : "text-gray-500"} text-sm font-medium`} prefetch={true}>
                   <Settings /> Settings
                 </Link>
               </div>

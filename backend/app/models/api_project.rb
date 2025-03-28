@@ -11,6 +11,6 @@ class ApiProject < ApplicationRecord
     message: "must be a valid URL starting with http:// or https://"
   }
 
-  has_many :section, class_name: "ApiSection", foreign_key: "project_id", dependent: :destroy
+  has_many :sections, class_name: 'ApiSection', foreign_key: 'project_id', dependent: :destroy
   has_many :endpoint, class_name: "ApiEndpoint", foreign_key: "project_id", dependent: :destroy
 end

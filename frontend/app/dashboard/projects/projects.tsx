@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation'
 import { renderErrorMessage } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { ImportOpenApiButton } from '@/components/api-endpoints/Import-open-api-button';
 
 interface Project {
   id: number
@@ -151,7 +152,7 @@ export default function Projects() {
           className="flex items-center h-10" // Added fixed height to match input
         >
           <Plus className="mr-2" size={20} />
-          Add Platform
+          Add Project
         </Button>
       </div>
       <CustomSupense
@@ -203,6 +204,9 @@ export default function Projects() {
                   >
                     View Project <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
+                  <ImportOpenApiButton
+                    projectSlug={project.slug || ''}
+                  />
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>

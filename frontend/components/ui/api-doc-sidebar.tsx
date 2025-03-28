@@ -2,7 +2,7 @@
 
 import { ReactElement } from "react"
 import Link from "next/link"
-import { CodeSquare, File, GalleryVerticalEnd, MoreHorizontal, Pencil, Plus, Trash } from "lucide-react"
+import { CodeSquare, GalleryVerticalEnd, MoreHorizontal, Pencil, Plus, Trash } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -34,7 +34,6 @@ interface ApiDocSidebarProps {
   appSlug: string
   endpointSlug: string
   items: Section[]
-  handleAddDoc: (sectionSlug?: string) => void
   handleAddEndpoint: (sectionSlug?: string) => void
   handleDeleteSection: (sectionSlug?: string) => void
   handleEditSection: (sectionSlug: string, sectionText: string) => void
@@ -51,7 +50,6 @@ export function ApiDocSidebar({
   handleDeleteSection,
   handleEditSection,
   handleAddSection,
-  handleAddDoc,
   children
 }: ApiDocSidebarProps) {
 
@@ -68,7 +66,7 @@ export function ApiDocSidebar({
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton size="lg" asChild>
-                <Link href={`/dashboard/features/${appSlug}`}>
+                <Link href={`/dashboard/features/${appSlug}`} prefetch={true}>
                   <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                     <GalleryVerticalEnd className="size-4" />
                   </div>
@@ -90,7 +88,7 @@ export function ApiDocSidebar({
                 >
                   <div className="relative flex items-center justify-between">
                     <SidebarMenuButton asChild>
-                      <Link href={`#${section.slug}`} className="font-semibold text-2xl uppercase truncate block whitespace-nowrap overflow-hidden">
+                      <Link href={`#${section.slug}`} className="font-semibold text-2xl uppercase truncate block whitespace-nowrap overflow-hidden" prefetch={true}>
                         {truncateWithDots(section.title)}
                       </Link>
                     </SidebarMenuButton>
@@ -116,13 +114,6 @@ export function ApiDocSidebar({
                                 handleAddEndpoint(section.slug)
                               }}>
                               <CodeSquare /> API Endpoint
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              className="flex items-center justify-start gap-2 rounded-none"
-                              onClick={() => handleAddDoc(section.slug)}
-                            >
-                              <File /> Doc
                             </Button>
                           </div>
                         </PopoverContent>

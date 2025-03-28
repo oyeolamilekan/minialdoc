@@ -60,12 +60,21 @@ export const deleteAPIEndpoint = async (endpointId: string) => {
   return data;
 }
 
-export const updateAPIEndpoint = async (body: { endpointId: string, body?: unknown, content?: unknown, markdown_content?: unknown, title?: string }) => { 
+export const updateAPIEndpoint = async (body: { endpointId: string, body?: unknown, content?: unknown, markdown?: unknown, title?: string }) => { 
   const { data } = await axiosInstance.put(`endpoints/update_endpoint/${body.endpointId}`, body);
   return data;
 }
 
 export const fetchProjectWithEndpoint = async (id: string) => {
   const { data } = await axiosInstance.get(`projects/fetch_project_with_endpoint/${id}`);
+  return data;
+}
+
+export const importOpenApiSpec = async (projectSlug: string, file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('project_slug', projectSlug);
+  
+  const { data } = await axiosInstance.post(`endpoints/import_endpoint/${projectSlug}`, formData);
   return data;
 }

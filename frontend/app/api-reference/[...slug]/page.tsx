@@ -12,16 +12,12 @@ import { useModals } from '@/hooks/useModal'
 import { APIEndpoint, Endpoint } from '@/interfaces'
 import { Form } from '@/components/ui/form';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { renderErrorMessage } from '@/lib/utils'
-import { AlertTriangle, Pencil } from 'lucide-react'
+import { AlertTriangle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import "@blocknote/core/fonts/inter.css";
-import { BlockNoteView, lightDefaultTheme } from "@blocknote/mantine";
-import "@blocknote/mantine/style.css";
-import { BlockNoteEditor } from '@blocknote/core'
 
 type Props = {
   params: {
@@ -30,12 +26,6 @@ type Props = {
 }
 
 export default function Page({ params: { slug } }: Props) {
-  const [content, setContent] = useState<string | null>(null)
-
-  const [markdown, setMarkdown] = useState<string | null>(null)
-
-  const [initialContent, setInitialContent] = useState<string | null>(null)
-
   const router = useRouter()
 
   const sectionRef = useRef<string>()
@@ -53,12 +43,6 @@ export default function Page({ params: { slug } }: Props) {
   const queryClient = useQueryClient()
 
   const [endpointState, setEndpoint] = useState<APIEndpoint | null>(null)
-
-  const editor = useMemo(() => {
-    return BlockNoteEditor.create({
-      initialContent: initialContent ? JSON.parse(initialContent) : null,
-    });
-  }, [initialContent]);
 
   const { data } = useQuery({
     queryKey: ["api_sections_and_endpoints", projectSlug],
@@ -181,7 +165,6 @@ export default function Page({ params: { slug } }: Props) {
   }
 
   useEffect(() => {
-    setInitialContent(endpoint?.data?.content)
     setEndpoint(endpoint?.data)
     if (Boolean(endpointSlug)) refetch()
   }, [endpointSlug, endpoint?.data, refetch])
@@ -195,7 +178,7 @@ export default function Page({ params: { slug } }: Props) {
   }
 
   const saveDoc = () => {
-    updateAPIEndpointMutation({ content: content, markdown_content: markdown, endpointId: endpointSlug as string })
+    updateAPIEndpointMutation({ content: content, markdown: markdown, endpointId: endpointSlug as string })
   }
 
   const handleAddSection = () => {
@@ -210,12 +193,12 @@ export default function Page({ params: { slug } }: Props) {
     reset({ title: '' })
   }
 
-  const handleAddDoc = (sectionSlug?: string) => {
-    toggleAddAPIDocModal()
-    apiEndpointTypeRef.current = 'doc'
-    sectionRef.current = sectionSlug;
-    reset({ title: '' })
-  }
+  // const handleAddDoc = (sectionSlug?: string) => {
+  //   toggleAddAPIDocModal()
+  //   apiEndpointTypeRef.current = 'doc'
+  //   sectionRef.current = sectionSlug;
+  //   reset({ title: '' })
+  // }
 
   const handleEditSection = (sectionSlug: string, sectionText: string) => {
     apiSectionRef.current = sectionSlug
@@ -282,44 +265,8 @@ export default function Page({ params: { slug } }: Props) {
       handleEditSection={handleEditSection}
       handleAddEndpoint={handleAddEndpoint}
       handleAddSection={handleAddSection}
-      handleAddDoc={handleAddDoc}
     >
       <div className="">
-        {endpointState?.endpoint_type == "doc" && (
-          <>
-            <div className='flex justify-between mr-4'>
-              <h2 className='mx-6 text-3xl font-bold flex align-middle'>
-                {endpointState.title}
-                <Pencil className="mx-4 cursor-pointer"
-                  onClick={() => {
-                    apiEndpointRef.current = endpointState.slug
-                    toggleEditAPIEndpointModal()
-                    reset({ title: endpointState.title })
-                  }}
-                />
-              </h2>
-              <div className="space-x-4">
-                <Button onClick={saveDoc}>Save</Button>
-
-                <Button variant={"destructive"} onClick={() => {
-                  apiEndpointRef.current = endpointState.slug
-                  toggleDeleteAPIEndpointModal()
-                }}>Delete</Button>
-              </div>
-            </div>
-            <BlockNoteView
-              editor={editor}
-              className="mt-6"
-              onChange={async() => {
-                const markDownContent = await editor.blocksToMarkdownLossy(editor.document)
-                setContent(JSON.stringify(editor.document))
-                setMarkdown(markDownContent)
-              }}
-              theme={lightDefaultTheme}
-            />
-          </>
-        )}
-
         {endpointState?.endpoint_type == "endpoint" && (
           <>
             <div className='flex justify-between mr-4'>

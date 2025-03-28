@@ -46,7 +46,7 @@ module Slugify
   end
 
   def should_generate_slug?
-    slug.blank? || title_changed?
+    slug.blank? || title_changed? || new_record?
   end
 
   # Optional method to regenerate slug
