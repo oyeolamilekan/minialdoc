@@ -319,7 +319,7 @@ export default function Projects() {
             <Button className='w-full' disabled={isUpdatingAPIProject}>
               Proceed
             </Button>
-            <Button className="flex-1" variant={"outline"} onClick={toggleEditProjectModal}>
+            <Button className="w-full" variant={"outline"} onClick={toggleEditProjectModal}>
               No
             </Button>
           </div>
