@@ -200,7 +200,10 @@ export default function Projects() {
                   <Button
                     variant="ghost"
                     className="text-gray-600 hover:text-gray-800 hover:bg-gray-50 px-4 py-2 -ml-4 rounded-md transition-colors duration-300"
-                    onClick={() => router.push(`features/${project.slug}`)}
+                    onClick={() => { 
+                      router.prefetch(`features/${project.slug}`)
+                      router.push(`features/${project.slug}`)
+                    }}
                   >
                     View Project <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
