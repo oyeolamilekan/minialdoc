@@ -158,6 +158,7 @@ export function ApiDocSidebar({
                           <Link
                             className="cursor-pointer flex items-center justify-between gap-2"
                             href={`/api-reference/${appSlug}/${endpoint.slug}`}
+                            prefetch={true}
                           >
                             <span className="capitalize">{endpoint.title}</span>
                             {endpoint.endpoint_type == "endpoint" && <Badge className="text-xs font-medium text-white bg-black">
