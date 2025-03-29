@@ -35,6 +35,16 @@ export function Navbar() {
                 GitHub
               </Link>
             </Button>
+            <Button variant="outline" asChild className="text-sm font-medium">
+              <Link 
+                href="/auth/sign-in" 
+                target="_blank"
+                className="flex items-center gap-2"
+                prefetch={true}
+              >
+                Sign in
+              </Link>
+            </Button>
           </div>
           <div className="md:hidden flex items-center">
             <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Toggle menu">
