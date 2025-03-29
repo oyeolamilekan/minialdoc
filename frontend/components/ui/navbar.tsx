@@ -22,7 +22,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost" asChild className="text-sm font-medium">
               <Link 
-                href="/auth/sign-in" 
+                href="/auth/sign-up" 
                 target="_blank">
                 Sign up
               </Link>
