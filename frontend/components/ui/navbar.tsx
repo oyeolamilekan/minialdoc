@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { Menu, X, Github } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
