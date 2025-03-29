@@ -10,6 +10,7 @@ import "@blocknote/mantine/style.css";
 import "@blocknote/core/fonts/inter.css";
 import { redirectToReference } from '@/lib/redirectToReference';
 import { useRouter } from 'next/navigation';
+import { Loading } from '@/components/ui/loading';
 
 export default function Reference({ slug, domain }: { slug: string, domain: string }) {
   const [endpointState, setEndpoint] = useState<APIEndpoint | null>(null)
@@ -28,7 +29,7 @@ export default function Reference({ slug, domain }: { slug: string, domain: stri
     retry: false,
   });
 
-  const { data: endpoint, refetch } = useQuery({
+  const { data: endpoint, refetch, isLoading: isEndpointLoading } = useQuery({
     queryKey: ["api_endpoint", slug],
     enabled: Boolean(slug),
     queryFn: () => fetchAPIEndpoint(slug!),
@@ -68,7 +69,7 @@ export default function Reference({ slug, domain }: { slug: string, domain: stri
       endpointSlug={slug}
     >
       <>
-        {endpointState?.endpoint_type == "endpoint" && (
+        {isEndpointLoading ? <Loading /> : endpointState?.endpoint_type == "endpoint" && (
           <>
             <h2 className='mx-6 text-xl md:text-2xl font-bold'>{endpointState.title}</h2>
             <EndpointTester endpoint={endpointState.body} updateEndpoint={updateEndpoint} baseUrl={projectData?.data?.base_url} />

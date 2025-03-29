@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import Loading from '@/app/components/loading'
 import { EndpointEditor } from '@/components/api-editor/editor'
 import { ApiDocSidebar } from '@/components/ui/api-doc-sidebar'
 import { Button } from '@/components/ui/button'
@@ -19,6 +18,7 @@ import { toast } from 'sonner'
 import { renderErrorMessage } from '@/lib/utils'
 import { AlertTriangle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { Loading } from '@/components/ui/loading';
 
 type Props = {
   params: {
