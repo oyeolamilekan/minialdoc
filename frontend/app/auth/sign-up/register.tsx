@@ -13,9 +13,12 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/ui/modal'
 import ErrorMessage from '@/components/ui/input-error'
+import { useRouter } from 'next/navigation'
 
 export default function Register() {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const router = useRouter();
+
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   const { modals, updateModals } = useModals();
 
@@ -31,8 +34,8 @@ export default function Register() {
   const { isPending, mutate } = useMutation({
     mutationFn: createUser,
     onSuccess() {
-      toggleSuccessModal();
-      reset()
+      toast.success("You account has been created, kindly sign in.")
+      router.push("/auth/sign-in")
     },
     onError(err: any) {
       const { message } = err.response?.data;

@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
+import Loading from '@/app/components/loading'
 import { EndpointEditor } from '@/components/api-editor/editor'
 import { ApiDocSidebar } from '@/components/ui/api-doc-sidebar'
 import { Button } from '@/components/ui/button'
@@ -263,7 +264,7 @@ export default function Page({ params: { slug } }: Props) {
       handleAddSection={handleAddSection}
     >
       <div className="">
-        {endpointState?.endpoint_type == "endpoint" && (
+        {!endpointState ? <Loading /> : endpointState?.endpoint_type === "endpoint" && (
           <>
             <div className='flex justify-between mr-4'>
               <h2 className='mx-6 text-3xl font-bold'>{endpointState.title}</h2>
