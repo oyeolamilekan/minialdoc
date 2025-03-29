@@ -21,18 +21,10 @@ export function Navbar() {
           </div>
           <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost" asChild className="text-sm font-medium">
-              <Link href="#features">
-                Features
-              </Link>
-            </Button>
-            <Button variant="outline" asChild className="text-sm font-medium">
               <Link 
-                href="https://github.com/oyeolamilekan/minialdoc" 
-                target="_blank"
-                className="flex items-center gap-2"
-              >
-                <Github className="h-4 w-4" />
-                GitHub
+                href="/auth/sign-in" 
+                target="_blank">
+                Sign up
               </Link>
             </Button>
             <Button variant="outline" asChild className="text-sm font-medium">
