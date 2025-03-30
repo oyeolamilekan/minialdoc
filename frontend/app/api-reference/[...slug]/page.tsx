@@ -18,7 +18,6 @@ import { toast } from 'sonner'
 import { renderErrorMessage } from '@/lib/utils'
 import { AlertTriangle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { Loading } from '@/components/ui/loading';
 
 type Props = {
   params: {
@@ -51,7 +50,7 @@ export default function Page({ params: { slug } }: Props) {
     retry: false,
   });
 
-  const { data: endpoint, refetch, isLoading: isEndpointLoading } = useQuery({
+  const { data: endpoint, refetch } = useQuery({
     queryKey: ["api_endpoint", endpointSlug],
     enabled: Boolean(endpointSlug),
     queryFn: () => fetchAPIEndpoint(endpointSlug),
@@ -264,7 +263,7 @@ export default function Page({ params: { slug } }: Props) {
       handleAddSection={handleAddSection}
     >
       <div className="">
-        {isEndpointLoading ? <Loading /> : endpointState?.endpoint_type === "endpoint" && (
+        {endpointState?.endpoint_type == "endpoint" && (
           <>
             <div className='flex justify-between mr-4'>
               <h2 className='mx-6 text-3xl font-bold'>{endpointState.title}</h2>

@@ -224,8 +224,8 @@ ${body}
             {error}
           </div>
         )}
-        <div className="flex md:space-x-14 space-y-8 md:space-y-0 md:flex-row flex-col justify-center">
-          <div className="md:w-1/2 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14">
+          <div className="w-full min-w-0">
             <form onSubmit={handleSubmit} className="my-5">
               <div className="mb-4 space-y-1">
                 <h3 className="font-bold text-xl">Description</h3>
@@ -312,8 +312,8 @@ ${body}
             )}
           </div>
 
-          <div className="md:w-1/2 w-full">
-            <div className="mt-6">
+          <div className="w-full min-w-0">
+            <div className="mt-0 md:mt-6">
               <h3 className="text-lg font-semibold mb-2">Response</h3>
               <div className="flex items-center mb-2">
                 {response?.status && <ResponseBadge status={response?.status} />}
