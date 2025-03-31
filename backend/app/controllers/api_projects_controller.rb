@@ -37,8 +37,8 @@ class ApiProjectsController < ApplicationController
 
   def fetch_project_with_endpoint
     project = ApiProject.find_by(slug: params[:slug])
-    return api_error(status_code: :not_found, message: "No project found") unless project.present?
-    project_with_endpoint = { slug: project.section.first.endpoint.first.slug }
+    return api_error(status_code: :not_found, message: "No project found") unless project.present?    
+    project_with_endpoint = { slug: project.sections.last.endpoint.first&.slug }
     api_response(message: "Api project with endpoints fetched", data: project_with_endpoint)
   end
 
