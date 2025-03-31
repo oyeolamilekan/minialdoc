@@ -64,3 +64,8 @@ export const truncateWithDots = (
   
   return text.slice(0, limit) + ending;
 };
+
+export const openDoc = (slug: string) => {
+  const baseDomain = process.env.PUBLIC_APPLICATION_DOMAIN || 'minialdoc.com'
+  open(`https://${slug}.${baseDomain}`)
+}

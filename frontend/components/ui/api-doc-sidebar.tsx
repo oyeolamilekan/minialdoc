@@ -2,7 +2,7 @@
 
 import { ReactElement } from "react"
 import Link from "next/link"
-import { CodeSquare, GalleryVerticalEnd, MoreHorizontal, Pencil, Plus, Trash } from "lucide-react"
+import { CodeSquare, GalleryVerticalEnd, Link2Icon, MoreHorizontal, Pencil, Plus, Trash } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -27,7 +27,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { EndpointData, Section } from "@/interfaces"
-import { truncateWithDots } from "@/lib/utils"
+import { openDoc, truncateWithDots } from "@/lib/utils"
 
 interface ApiDocSidebarProps {
   title: string
@@ -175,7 +175,11 @@ export function ApiDocSidebar({
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
-          <div className="p-4">
+          <div className="p-4 space-y-2">
+            <Button onClick={() => openDoc(appSlug)} className="w-full justify-center">
+              <Link2Icon className="mr-2 h-4 w-4" />
+              View Doc
+            </Button>
             <Button onClick={handleAddSection} className="w-full justify-center">
               <Plus className="mr-2 h-4 w-4" />
               Add Section
