@@ -112,6 +112,7 @@ export default function Register() {
             Have an account? <Link href="/auth/sign-in" className="text-gray-500 underline font-semibold">Sign In</Link>
           </p>
         </Form>
+        <p className="mt-5 text-center">By signing up, you agree to the <Link href={"/auth/terms"} className="text-gray-500 underline font-semibold">Terms of Service</Link></p>
       </div>
       <Modal isShown={modals.successModal} onClose={toggleSuccessModal}>
         <div className="flex flex-col items-center mb-5">
